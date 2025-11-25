@@ -69,7 +69,9 @@ Run the following on a machine where an RDP client is available (e.g. [Windows A
 
 ## Conducting the Demo
 
-This section guides you through the process of demonstrating the Customer-Managed Active Directory feature.
+### SQL Server Management Studio
+
+This section guides you through the process of demonstrating the Customer-Managed Active Directory feature using SQL Server Management Studio.
 
 1.  **Join the Cloud SQL instance to the domain:** The command to do this is provided in the output of `deploy.sh` and `get-lab-info.sh`. Run this command from your terminal.
 
@@ -99,3 +101,65 @@ This section guides you through the process of demonstrating the Customer-Manage
     ```
 
     The result should be `demo\administrator`.
+
+### Integrated authentication in C#
+
+You can also connect to the SQL Server instance using Integrated Authentication from a C# application.
+
+1.  **Open Visual Studio Code**
+
+2.  **Initialize a new .NET Console Application:** Open a terminal and run the following commands:
+
+    ```bash
+    dotnet new console -o sql-auth-demo
+    cd sql-auth-demo
+    ```
+
+3.  **Add the Microsoft.Data.SqlClient package:**
+
+    ```bash
+    dotnet add package Microsoft.Data.SqlClient
+    ```
+
+4.  **Open the newly created folder in Visual Studio Code:** Use menu `File`->`Open Folder...` to open the newly created folder.
+
+5.  **Write the C# code:** Open the `Program.cs` file and replace its content with the following code. Remember to replace `<your-sql-server-fqdn>` with the FQDN of your SQL Server instance.
+
+    ```csharp
+    using System;
+    using Microsoft.Data.SqlClient;
+    
+    // Use SqlConnectionStringBuilder to create the connection string
+    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+    builder.DataSource = "<your-sql-server-fqdn>"; 
+    builder.InitialCatalog = "master";
+    builder.IntegratedSecurity = true;
+    builder.TrustServerCertificate = true;
+    
+    // Connect to the SQL Server instance
+    using SqlConnection connection = new SqlConnection(builder.ConnectionString);
+    
+    connection.Open();
+    Console.WriteLine("Connected to SQL Server successfully!");
+
+    // Execute the query
+    SqlCommand command = connection.CreateCommand();
+    command.CommandText = "SELECT SUSER_SNAME()";
+    
+    var user = command.ExecuteScalar();
+    Console.WriteLine($"Authenticated as: {user}");
+    ```
+
+6.  **Run the application:**
+
+    ```bash
+    dotnet run
+    ```
+
+    You should see an output similar to the following, confirming that you have successfully authenticated with your Windows user:
+
+    ```
+    Connected to SQL Server successfully!
+    Authenticated as: demo\administrator
+    ```
+
