@@ -62,7 +62,7 @@ The `windows_shell.sh` script can be used to access the Windows VM, via SSH.
 ### Code repository
 
 The project is tracked using git.
-There is a private github repository named matteote/cloudsql-cmad-demo-pri.
+There is a public github repository named matteote/cloudsql-cmad-demo.
 
 ## Agent Directives
 
@@ -71,8 +71,8 @@ There is a private github repository named matteote/cloudsql-cmad-demo-pri.
 *   You are allowed to read and modify Terraform files (`.tf`), shell scripts (`.sh`), and PowerShell scripts (`.ps1`).
 *   You can use `terraform plan` to preview changes.
 *   You can create new files and directories as needed.
-*   You can interact with github (in the matteote/cloudsql-cmad-demo-pri repository) to fetch, pull, commit and push the repository content.
-*   You can interact with github (in the matteote/cloudsql-cmad-demo-pri repository) to manage issues, including creatind, updating, closing and deleting issues..
+*   You can interact with github (in the matteote/cloudsql-cmad-demo repository) to fetch, pull, commit and push the repository content.
+*   You can interact with github (in the matteote/cloudsql-cmad-demo repository) to manage issues, including creatind, updating, closing and deleting issues..
 
 ### What You Cannot Do
 
