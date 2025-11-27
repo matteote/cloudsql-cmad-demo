@@ -41,6 +41,8 @@ echo "Using project '$PROJECT_ID', zone '$ZONE', and region '$REGION'"
 # Deploy terraform
 echo "$(date) - Deploying Terraform"
 pushd terraform >/dev/null
+echo "$(date) - Initializing Terraform"
+terraform init
 if ! terraform apply --auto-approve -var="project_id=$PROJECT_ID" -var="zone=$ZONE" -var="region=$REGION"; then
     echo "Terraform apply failed. Retrying in 5 seconds..."
     sleep 5

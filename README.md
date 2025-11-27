@@ -10,6 +10,8 @@ This repository contains the code needed to demonstrate the new Customer-Managed
 
 ## Environment Setup
 
+To quickly set up and explore this project, open it directly in Google Cloud Shell: [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/matteote/cloudsql-cmad-demo&ephemeral=true&show=terminal)
+
 This section describes how to set up the demo environment.
 
 ### Requirements
